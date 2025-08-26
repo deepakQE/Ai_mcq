@@ -5,6 +5,7 @@ import './index.css';
 import QuestionCard from './components/QuestionCard';
 import QuizSummary from './components/QuizSummary';
 import { generateQuestions, shuffleArray, exportToJSON } from './utils';
+const API_BASE = "https://ai-mcq-5c6u.onrender.com";  // your Render backend URL
 
 function App() {
   const [topic, setTopic] = useState('python');
@@ -57,7 +58,8 @@ function App() {
         // send text to backend generate-from-text endpoint
         try {
           const payload = { topic, subtopics, difficulty, count, text: sourceText, useLLM: useLLM ? '1' : '0' };
-          const res = await axios.post('/api/generate-from-text', payload);
+          const res = await axios.post(`${API_BASE}/api/generate-from-text`, payload);
+
           qs = res.data.questions || [];
         } catch (e) {
           console.warn('Backend text-generation failed, falling back to local generator', e);
@@ -67,7 +69,8 @@ function App() {
         // Try backend generic endpoint, fallback to frontend
         try {
           const payload = { topic, subtopics, difficulty, count };
-          const res = await axios.post('/api/generate', payload);
+          const res = await axios.post(`${API_BASE}/api/generate`, payload);
+
           qs = res.data.questions || [];
         } catch (e) {
           console.warn('Backend generation failed, falling back to local generator', e);
