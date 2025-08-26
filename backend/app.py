@@ -1,6 +1,8 @@
 import os
 import json
 import time
+from flask_cors import CORS
+CORS(app)
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 
