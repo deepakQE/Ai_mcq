@@ -1,0 +1,104 @@
+body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+
+/* Default lighter background */
+.theme-default { background: linear-gradient(180deg, #0f172a 0%, #071133 60%); color: #0f172a; }
+
+/* Space theme: stars and slow parallax */
+.theme-space {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+.theme-space::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(white 1px, transparent 1px), radial-gradient(white 1px, transparent 1px);
+  background-size: 3px 3px, 2px 2px;
+  background-position: 0 0, 50px 100px;
+  opacity: 0.08;
+}
+
+/* Sunset river: gradient with soft animated waves */
+.theme-sunset {
+  background: linear-gradient(180deg, #ffecd2 0%, #fcb69f 50%, #a18cd1 100%);
+}
+.theme-sunset::after {
+  content: '';
+  position: fixed; left:0; right:0; bottom:0; height:120px; background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(6px);
+}
+
+/* Meditation: calm green gradient with floating particles */
+.theme-meditation { background: linear-gradient(180deg, #e6f4ea 0%, #cfe9d8 60%); }
+.theme-meditation::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size: 60px 60px; opacity: 0.03;
+}
+
+/* Dark mode overrides */
+.dark-mode.theme-default { background: linear-gradient(180deg, #071033 0%, #020617 60%); color: #dbeafe; }
+.dark-mode .bg-white { background: rgba(255,255,255,0.03); color: #e6eef8; border-color: rgba(255,255,255,0.06); }
+.dark-mode button { color: #e6eef8; }
+
+/* Container */
+.min-h-screen { background: transparent; }
+
+.max-w-4xl { max-width: 1100px; z-index: 5; }
+
+/* Card styles */
+.bg-white { background: rgba(255,255,255,0.95); padding: 18px; }
+
+header h1 { color: #0ea5e9; font-size: 32px; }
+
+/* Buttons */
+button { transition: transform 0.08s ease, box-shadow 0.12s ease; }
+button:hover { transform: translateY(-1px); }
+
+/* Developer toolbar */
+.dev-toolbar { background: rgba(255,255,255,0.06); padding: 10px; border-radius: 8px; }
+.dev-toolbar .text-sm { color: rgba(0,0,0,0.7); }
+
+/* Ensure history items stand out */
+.history-item { box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Make sure question target has top padding so it scrolls nicely */
+[ref] { scroll-margin-top: 80px; }

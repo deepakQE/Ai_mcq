@@ -1,0 +1,10 @@
+flask
+flask-cors
+python-dotenv
+google-generativeai
+Flask
+werkzeug
+PyPDF2
+flask-cors
+pdfminer.six
+openai

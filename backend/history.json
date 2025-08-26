@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1755427148615,
+    "topic": "",
+    "questions": [
+      {
+        "prompt": "Capgemini Exceller Recruitment 2025: 1-Month\nStudy Roadmap (8 Hours/Day)\nAchieving the  Senior Analyst (A5) package of \u20b97.5 LPA  in Capgemini\u2019s 2025 Exceller drive hinges on\nsolving both coding _____ in the final coding assessment .",
+        "options": [
+          "Exceller",
+          "drive",
+          "2025",
+          "problems"
+        ],
+        "answer": "D",
+        "explanation": "Based on source: 'Capgemini Exceller Recruitment 2025: 1-Month\nStudy Roadmap (8 Hours/Day)\nAchieving the  Senior Analyst (A5) package of \u20b9...'"
+      },
+      {
+        "prompt": "The selection process has been updated\nfor 2025 \u2013 certain old rounds (like verbal aptitude) were dropped and new ones (Spoken English, behavioral\nprofiling) _____ .",
+        "options": [
+          "process",
+          "2025",
+          "selection",
+          "added"
+        ],
+        "answer": "D",
+        "explanation": "Based on source: 'The selection process has been updated\nfor 2025 \u2013 certain old rounds (like verbal aptitude) were dropped and new ones (S...'"
+      },
+      {
+        "prompt": "Below is a structured 4-week, 8-hours-per-day roadmap _____ for the  7.5 LPA\ntarget.",
+        "options": [
+          "structured",
+          "tailored",
+          "hours",
+          "Below"
+        ],
+        "answer": "B",
+        "explanation": "Based on source: 'Below is a structured 4-week, 8-hours-per-day roadmap tailored for the  7.5 LPA\ntarget.'"
+      },
+      {
+        "prompt": "Selection Process & Eligibility\nCapgemini\u2019s  Exceller  _____  proceeds  virtually  through  several  eliminatory  stages .",
+        "options": [
+          "virtually",
+          "hiring",
+          "Selection",
+          "several"
+        ],
+        "answer": "B",
+        "explanation": "Based on source: 'Selection Process & Eligibility\nCapgemini\u2019s  Exceller  hiring  proceeds  virtually  through  several  eliminatory  stage...'"
+      },
+      {
+        "prompt": "Key  rounds\ninclude:\nOnline _____ Test (Elimination):  This first round comprises multiple sections.",
+        "options": [
+          "sections",
+          "Written",
+          "Test",
+          "round"
+        ],
+        "answer": "B",
+        "explanation": "Based on source: 'Key  rounds\ninclude:\nOnline Written Test (Elimination):  This first round comprises multiple sections.'"
+      }
+    ],
+    "createdAt": "Sun Aug 17 16:09:08 2025",
+    "sourceFile": "Capgemini_Exceller_Recruitment_2025__1-Month_Study_Roadmap_8_Hours_Day.pdf"
+  },
+  {
+    "id": 1755427093645,
+    "topic": "python",
+    "questions": [
+      {
+        "prompt": "An outgoing batch of students wants to gift books _____ Rs 4,200 to their teachers.",
+        "options": [
+          "students",
+          "worth",
+          "wants",
+          "gift"
+        ],
+        "answer": "B",
+        "explanation": "Based on source: 'An outgoing batch of students wants to gift books worth Rs 4,200 to their teachers.'"
+      },
+      {
+        "prompt": "If the boys offer to pay 50% more than the girls and an\nexternal sponsors gives three _____ the boy\u2019s contribution, then how much should the boys donate?",
+        "options": [
+          "sponsors",
+          "girls",
+          "more",
+          "times"
+        ],
+        "answer": "D",
+        "explanation": "Based on source: 'If the boys offer to pay 50% more than the girls and an\nexternal sponsors gives three times the boy\u2019s contribution, then...'"
+      },
+      {
+        "prompt": "8,600 to be divided _____ 5 sons, 4 daughters and 2 nephews, if each daughter receives  four times as much as each nephew\nand each son receives  five times as much as each nephew, how much does each daughter receive ?",
+        "options": [
+          "among",
+          "much",
+          "times",
+          "divided"
+        ],
+        "answer": "A",
+        "explanation": "Based on source: '8,600 to be divided among 5 sons, 4 daughters and 2 nephews, if each daughter receives  four times as much as each nephe...'"
+      },
+      {
+        "prompt": "430 is divided among 45 persons , such that the ratio of total amount received by all men, all women & all _____ are in the ratio\n12: 15: 16.",
+        "options": [
+          "that",
+          "children",
+          "among",
+          "ratio"
+        ],
+        "answer": "B",
+        "explanation": "Based on source: '430 is divided among 45 persons , such that the ratio of total amount received by all men, all women & all children are ...'"
+      },
+      {
+        "prompt": "While the ratio of amount _____ by each men, each woman & each child is 6: 5: 4.",
+        "options": [
+          "received",
+          "woman",
+          "child",
+          "each"
+        ],
+        "answer": "A",
+        "explanation": "Based on source: 'While the ratio of amount received by each men, each woman & each child is 6: 5: 4.'"
+      }
+    ],
+    "createdAt": "Sun Aug 17 16:08:13 2025",
+    "sourceFile": "RATIO-TCS_-_final_review.pdf"
+  },
+  {
+    "id": 1755426764175,
+    "topic": "",
+    "questions": [
+      {
+        "prompt": "Capgemini Aptitude Preparation: Ratios, Proportions, and Averages - Practice (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "This document compiles common examples and problem types from Ratios & Proportions and (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Averages, frequently seen in aptitude tests like Capgemini Exceller (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Ratios and Proportions (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Express 50 g to 2 kg as a ratio (convert to same units) (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      }
+    ],
+    "createdAt": "Sun Aug 17 16:02:44 2025",
+    "sourceFile": "Capgemini_Aptitude_Ratios_Averages.pdf"
+  },
+  {
+    "id": 1755426724116,
+    "topic": "python",
+    "questions": [
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      }
+    ],
+    "createdAt": "Sun Aug 17 16:02:04 2025",
+    "sourceFile": "ratio.pdf"
+  },
+  {
+    "id": 1755426506473,
+    "topic": "",
+    "questions": [
+      {
+        "prompt": "Sample fact about . (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about . (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about . (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about . (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about . (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      }
+    ],
+    "createdAt": "Sun Aug 17 15:58:26 2025",
+    "sourceFile": "Deepak_Meena_2.pdf"
+  },
+  {
+    "id": 1755426480060,
+    "topic": "python",
+    "questions": [
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      },
+      {
+        "prompt": "Sample fact about python. (pick the best option)",
+        "options": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "answer": "A",
+        "explanation": "Generated from source document."
+      }
+    ],
+    "createdAt": "Sun Aug 17 15:58:00 2025",
+    "sourceFile": "Black_and_White_Clean_Professional_A4_Resume.pdf"
+  }
+]
