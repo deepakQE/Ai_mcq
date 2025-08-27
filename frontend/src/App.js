@@ -4,7 +4,7 @@ import './App.css';
 import './index.css';
 import QuestionCard from './components/QuestionCard';
 import QuizSummary from './components/QuizSummary';
-import { generateQuestions, shuffleArray, exportToJSON } from './utils';
+import { generateQuestions, shuffleArray } from './utils';
 
 // 🔹 Render backend URL
 const API_BASE = "https://ai-mcq-5c6u.onrender.com/api";  
@@ -15,7 +15,7 @@ function App() {
   const [difficulty, setDifficulty] = useState('Mixed');
   const [count, setCount] = useState(5);
   const [questions, setQuestions] = useState([]);
-  const [useBackend, setUseBackend] = useState(true); // default ON → backend first
+  const [useBackend, setUseBackend] = useState(true); 
   const [loading, setLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -27,13 +27,12 @@ function App() {
   const questionRef = useRef(null);
   const [history, setHistory] = useState([]);
 
-  // 🔹 Load history (backend preferred, fallback to localStorage)
+  // 🔹 Load history
   useEffect(() => {
     if (useBackend) {
       axios.get(`${API_BASE}/history`)
         .then(res => setHistory(res.data.history || []))
-        .catch(err => {
-          console.warn("Backend history fetch failed, using local storage", err);
+        .catch(() => {
           try {
             setHistory(JSON.parse(localStorage.getItem('mcq_history') || '[]'));
           } catch {
@@ -49,7 +48,7 @@ function App() {
     }
   }, [useBackend]);
 
-  // 🔹 Dark mode handling
+  // 🔹 Dark mode
   useEffect(() => {
     const classes = ['theme-meditation', 'dark-mode'];
     classes.forEach(c => document.body.classList.remove(c));
@@ -71,51 +70,34 @@ function App() {
       let qs = [];
 
       if (useBackend && sourceText.trim()) {
-        // Backend: generate from text
         try {
           const payload = { text: sourceText, count };
           const res = await axios.post(`${API_BASE}/generate-from-text`, payload);
           qs = res.data.questions || [];
-        } catch (e) {
-          console.warn('Backend text-generation failed, using local generator', e);
+        } catch {
           qs = generateQuestions({ topic, subtopics, difficulty, count });
         }
       } else if (useBackend) {
-        // Backend: generate by topic
         try {
           const payload = { topic, count };
           const res = await axios.post(`${API_BASE}/generate`, payload);
           qs = res.data.questions || [];
-        } catch (e) {
-          console.warn('Backend generation failed, using local generator', e);
+        } catch {
           qs = generateQuestions({ topic, subtopics, difficulty, count });
         }
       } else {
-        // Local generator
         qs = generateQuestions({ topic, subtopics, difficulty, count });
       }
 
       if (shuffleQuestions) qs = shuffleArray(qs);
       setQuestions(qs);
 
-      // 🔹 Save history
-      const entry = { 
-        id: Date.now(), 
-        topic, 
-        subtopics, 
-        difficulty, 
-        count, 
-        questions: qs, 
-        createdAt: new Date().toISOString() 
-      };
-
+      // save history
+      const entry = { id: Date.now(), topic, subtopics, difficulty, count, questions: qs, createdAt: new Date().toISOString() };
       if (!useBackend) {
-        // Local history
-        const qHash = JSON.stringify(qs);
         let newHist = [...history];
-        const existingIndex = newHist.findIndex(
-          h => h.topic === topic && JSON.stringify(h.questions) === qHash
-        );
+        const qHash = JSON.stringify(qs);
+        const existingIndex = newHist.findIndex(h => h.topic === topic && JSON.stringify(h.questions) === qHash);
         if (existingIndex !== -1) {
           const existing = newHist.splice(existingIndex, 1)[0];
           existing.createdAt = entry.createdAt;
@@ -127,34 +109,64 @@ function App() {
         setHistory(newHist);
         localStorage.setItem('mcq_history', JSON.stringify(newHist));
       } else {
-        // Backend handles persistence
-        axios.get(`${API_BASE}/history`)
-          .then(res => setHistory(res.data.history || []))
-          .catch(() => {});
+        axios.get(`${API_BASE}/history`).then(res => setHistory(res.data.history || []));
       }
 
-      // Last quiz
-      localStorage.setItem(
-        'mcq_last_quiz', 
-        JSON.stringify({ topic, subtopics, difficulty, count, questions: qs })
-      );
+      localStorage.setItem('mcq_last_quiz', JSON.stringify({ topic, subtopics, difficulty, count, questions: qs }));
 
-      // Scroll to first question
-      setTimeout(() => { 
+      setTimeout(() => {
         if (questionRef.current) {
-          questionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+          questionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }, 200);
 
     } catch (err) {
       console.error(err);
-      alert('Failed to generate questions. Check console.');
+      alert('Failed to generate questions.');
     } finally {
       setLoading(false);
     }
   };
 
-  // 🔹 Rendering logic will stay unchanged
+  // ✅ Render UI
+  return (
+    <div className="App">
+      <h1>AI MCQ Generator</h1>
+
+      <div className="controls">
+        <input value={topic} onChange={e => setTopic(e.target.value)} placeholder="Topic (e.g. Python)" />
+        <input value={subtopics} onChange={e => setSubtopics(e.target.value)} placeholder="Subtopics" />
+        <select value={difficulty} onChange={e => setDifficulty(e.target.value)}>
+          <option>Easy</option>
+          <option>Medium</option>
+          <option>Hard</option>
+          <option>Mixed</option>
+        </select>
+        <input type="number" value={count} onChange={e => setCount(e.target.value)} min="1" max="20" />
+        <button onClick={handleGenerate} disabled={loading}>
+          {loading ? "Generating..." : "Generate"}
+        </button>
+      </div>
+
+      {questions.length > 0 && (
+        <div ref={questionRef}>
+          {questions.map((q, i) => (
+            <QuestionCard
+              key={i}
+              question={q}
+              index={i}
+              selectedAnswer={answers[i]}
+              setAnswers={setAnswers}
+            />
+          ))}
+        </div>
+      )}
+
+      {showSummary && (
+        <QuizSummary questions={questions} answers={answers} />
+      )}
+    </div>
+  );
 }
 
 export default App;
