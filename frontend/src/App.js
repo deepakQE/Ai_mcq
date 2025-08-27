@@ -25,16 +25,31 @@ function App() {
   const [sourceText, setSourceText] = useState('');
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('mcq_dark') === '1');
   const questionRef = useRef(null);
-  const [history, setHistory] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('mcq_history') || '[]'); } catch { return []; }
-  });
+  const [history, setHistory] = useState([]);
 
+  // 🔹 fetch history from backend or localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('mcq_last_quiz');
-    if (saved) {
-      // don’t auto-restore quiz
+    if (useBackend) {
+      axios.get(`${API_BASE}/history`)
+        .then(res => {
+          setHistory(res.data.history || []);
+        })
+        .catch(err => {
+          console.warn("Backend history fetch failed, falling back to local storage", err);
+          try {
+            setHistory(JSON.parse(localStorage.getItem('mcq_history') || '[]'));
+          } catch {
+            setHistory([]);
+          }
+        });
+    } else {
+      try {
+        setHistory(JSON.parse(localStorage.getItem('mcq_history') || '[]'));
+      } catch {
+        setHistory([]);
+      }
     }
-  }, []);
+  }, [useBackend]);
 
   useEffect(() => {
     const classes = ['theme-meditation', 'dark-mode'];
@@ -81,24 +96,42 @@ function App() {
       if (shuffleQuestions) qs = shuffleArray(qs);
       setQuestions(qs);
 
-      // save history
-      const entry = { id: Date.now(), topic, subtopics, difficulty, count, questions: qs, createdAt: new Date().toISOString() };
-      const qHash = JSON.stringify(qs);
-      let newHist = [...history];
-      const existingIndex = newHist.findIndex(h => h.topic === topic && JSON.stringify(h.questions) === qHash);
-      if (existingIndex !== -1) {
-        const existing = newHist.splice(existingIndex, 1)[0];
-        existing.createdAt = entry.createdAt;
-        newHist.unshift(existing);
+      // 🔹 save history
+      const entry = { 
+        id: Date.now(), 
+        topic, subtopics, difficulty, count, 
+        questions: qs, 
+        createdAt: new Date().toISOString() 
+      };
+
+      if (!useBackend) {
+        // local storage mode
+        const qHash = JSON.stringify(qs);
+        let newHist = [...history];
+        const existingIndex = newHist.findIndex(h => h.topic === topic && JSON.stringify(h.questions) === qHash);
+        if (existingIndex !== -1) {
+          const existing = newHist.splice(existingIndex, 1)[0];
+          existing.createdAt = entry.createdAt;
+          newHist.unshift(existing);
+        } else {
+          newHist = [entry, ...newHist];
+        }
+        newHist = newHist.slice(0, 50);
+        setHistory(newHist);
+        localStorage.setItem('mcq_history', JSON.stringify(newHist));
       } else {
-        newHist = [entry, ...newHist];
+        // backend already saves automatically
+        // refresh history from backend
+        axios.get(`${API_BASE}/history`)
+          .then(res => setHistory(res.data.history || []))
+          .catch(() => {});
       }
-      newHist = newHist.slice(0, 50);
-      setHistory(newHist);
-      localStorage.setItem('mcq_history', JSON.stringify(newHist));
+
       localStorage.setItem('mcq_last_quiz', JSON.stringify({ topic, subtopics, difficulty, count, questions: qs }));
 
-      setTimeout(() => { if (questionRef.current) questionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
+      setTimeout(() => { 
+        if (questionRef.current) questionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+      }, 200);
     } catch (err) {
       console.error(err);
       alert('Failed to generate questions. See console.');
