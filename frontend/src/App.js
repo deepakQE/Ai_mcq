@@ -15,7 +15,7 @@ function App() {
   const [difficulty, setDifficulty] = useState('Mixed');
   const [count, setCount] = useState(5);
   const [questions, setQuestions] = useState([]);
-  const [useBackend, setUseBackend] = useState(true); // 🔹 default ON so it uses backend
+  const [useBackend, setUseBackend] = useState(true); // default ON → backend first
   const [loading, setLoading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     const saved = localStorage.getItem('mcq_last_quiz');
     if (saved) {
-      // do not auto-restore
+      // don’t auto-restore quiz
     }
   }, []);
 
@@ -55,8 +55,9 @@ function App() {
     try {
       let qs = [];
       if (useBackend && sourceText.trim()) {
+        // 🔹 call backend /api/generate-from-text
         try {
-          const payload = { topic, subtopics, difficulty, count, text: sourceText, useLLM: useLLM ? '1' : '0' };
+          const payload = { text: sourceText, count };
           const res = await axios.post(`${API_BASE}/generate-from-text`, payload);
           qs = res.data.questions || [];
         } catch (e) {
@@ -64,8 +65,9 @@ function App() {
           qs = generateQuestions({ topic, subtopics, difficulty, count });
         }
       } else if (useBackend) {
+        // 🔹 call backend /api/generate
         try {
-          const payload = { topic, subtopics, difficulty, count };
+          const payload = { topic, count };
           const res = await axios.post(`${API_BASE}/generate`, payload);
           qs = res.data.questions || [];
         } catch (e) {
@@ -79,6 +81,7 @@ function App() {
       if (shuffleQuestions) qs = shuffleArray(qs);
       setQuestions(qs);
 
+      // save history
       const entry = { id: Date.now(), topic, subtopics, difficulty, count, questions: qs, createdAt: new Date().toISOString() };
       const qHash = JSON.stringify(qs);
       let newHist = [...history];
@@ -104,7 +107,7 @@ function App() {
     }
   };
 
-  // ... 🔹 rest of your code stays exactly the same ...
+  // 🔹 rest of your rendering logic remains unchanged...
 }
 
 export default App;
